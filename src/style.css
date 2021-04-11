@@ -22,3 +22,11 @@ body {
 #description {
   text-transform: capitalize;
 }
+#fahrenheit-link {
+  color: black;
+  cursor: default;
+  text-decoration: none;
+}
+#fahrenheit-link:hover {
+  text-decoration: none;
+}
