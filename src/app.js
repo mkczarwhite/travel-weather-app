@@ -18,9 +18,11 @@ function displayTemperature(response){
     let windSpeed=document.querySelector("#speed");
     let dateElement=document.querySelector("#date");
     let iconElement=document.querySelector("#icon");
-    
+    let humidityElement=document.querySelector("#humidity");
+    console.log(response);
     fahrenheitTemperature=response.data.main.temp;
 
+    humidityElement.innerHTML=Math.round(response.data.main.humidity); 
     iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     iconElement.setAttribute("alt", response.data.weather[0].description);
     dateElement.innerHTML=formatDate(response.data.dt*1000);
