@@ -18,13 +18,14 @@ function displayTemperature(response){
     let windSpeed=document.querySelector("#speed");
     let dateElement=document.querySelector("#date");
     let iconElement=document.querySelector("#icon");
+    fahrenheitTemperature=response.data.main.temp;
     iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
     iconElement.setAttribute("alt", response.data.weather[0].description);
     dateElement.innerHTML=formatDate(response.data.dt*1000);
     windSpeed.innerHTML=Math.round(response.data.wind.speed);
     descriptionElement.innerHTML=response.data.weather[0].description;
     cityElement.innerHTML= response.data.name;
-    temperatureElement.innerHTML=Math.round(response.data.main.temp);
+    temperatureElement.innerHTML=Math.round(fahrenheitTemperature);
 }
 function lookUp(city){
         let apiKey="d3c980000de9297354460be9460728c9";
@@ -38,6 +39,29 @@ function search(event){
     lookUp(citySearchElement.value);
 }
 
-lookUp("Madison");
+function showCelsiusTemperature(event){
+    event.preventDefault();
+    let temperatureElement=document.querySelector("#current-temperature");
+    let celsiusTemperature=((fahrenheitTemperature - 32) * 5/9 );
+    temperatureElement.innerHTML=Math.round(celsiusTemperature);
+}
+
+function showFahrenheitTemperature(event){
+    event.preventDefault();
+    let temperatureElement=document.querySelector("current-temperature");
+    temperatureElement.innerHTML=fahrenheitTemperature;
+}
+
+
 let form=document.querySelector("#search-form");
 form.addEventListener("submit", search);
+
+let celsiusLink=document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", showCelsiusTemperature);
+
+let fahrenheitLink=document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
+
+let fahrenheitTemperature=null;
+
+lookUp("Madison");
