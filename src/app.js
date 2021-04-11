@@ -12,12 +12,14 @@ function formatDate (timestamp){
 }
 
 function displayTemperature(response){
-    console.log(response.data);
     let temperatureElement=document.querySelector("#current-temperature");
     let cityElement=document.querySelector("#city");
     let descriptionElement=document.querySelector("#description");
     let windSpeed=document.querySelector("#speed");
     let dateElement=document.querySelector("#date");
+    let iconElement=document.querySelector("#icon");
+    iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
+    iconElement.setAttribute("alt", response.data.weather[0].description);
     dateElement.innerHTML=formatDate(response.data.dt*1000);
     windSpeed.innerHTML=Math.round(response.data.wind.speed);
     descriptionElement.innerHTML=response.data.weather[0].description;
