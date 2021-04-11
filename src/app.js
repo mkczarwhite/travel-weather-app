@@ -26,8 +26,18 @@ function displayTemperature(response){
     cityElement.innerHTML= response.data.name;
     temperatureElement.innerHTML=Math.round(response.data.main.temp);
 }
-let apiKey="d3c980000de9297354460be9460728c9";
-let city="New York";
-let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+function lookUp(city){
+        let apiKey="d3c980000de9297354460be9460728c9";
+        let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
+    axios.get(apiUrl).then(displayTemperature);
+}
 
-axios.get(apiUrl).then(displayTemperature);
+function search(event){
+    event.preventDefault();
+    let citySearchElement=document.querySelector("#city-input");
+    lookUp(citySearchElement.value);
+}
+
+lookUp("Madison");
+let form=document.querySelector("#search-form");
+form.addEventListener("submit", search);
