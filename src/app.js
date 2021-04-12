@@ -55,7 +55,7 @@ function showCelsiusTemperature(event){
 function showFahrenheitTemperature(event){
     event.preventDefault();
     let temperatureElement=document.querySelector("#current-temperature");
-    temperatureElement.innerHTML=fahrenheitTemperature;
+    temperatureElement.innerHTML=Math.round(fahrenheitTemperature);
     celsiusLink.classList.add("active");
     fahrenheitLink.classList.remove("active");
 }
