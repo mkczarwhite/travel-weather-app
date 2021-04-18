@@ -11,6 +11,24 @@ function formatDate (timestamp){
 
 }
 
+function displayForecast(){
+let forecastElement=document.querySelector("#forecast");
+let forecastHTML=`<div class="row">`;
+let days=["Mon", "Tues", "Wed", "Thu", "Fri", "Sat"];
+days.forEach(function(day){
+forecastHTML= forecastHTML + `
+    <div class="col-sm-2">
+       <div class="weather-forecast-date">${day}</div>
+        <img src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png" alt="clouds" />
+        <span class="weather-forecast-temperature-max">52º</span> / <span class="weather-forecast-temperature-min">38º</span>
+    </div>`;
+})
+
+forecastHTML= forecastHTML + `</div>`;
+forecastElement.innerHTML= forecastHTML;
+
+}
+
 function displayTemperature(response){
     let temperatureElement=document.querySelector("#current-temperature");
     let cityElement=document.querySelector("#city");
@@ -30,6 +48,7 @@ function displayTemperature(response){
     descriptionElement.innerHTML=response.data.weather[0].description;
     cityElement.innerHTML= response.data.name;
     temperatureElement.innerHTML=Math.round(fahrenheitTemperature);
+    displayForecast();
 }
 function lookUp(city){
         let apiKey="d3c980000de9297354460be9460728c9";
