@@ -30,3 +30,6 @@ body {
 .fahrenheit-link:hover {
   text-decoration: none;
 }
+.weather-forecast {
+  text-align: center;
+}
