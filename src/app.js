@@ -42,10 +42,8 @@ forecastElement.innerHTML= forecastHTML;
 
 }
 function getForecast(coordinates){
-    console.log(coordinates);
     let apiKey="d3c980000de9297354460be9460728c9";
     let apiUrl= `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=imperial`;
-    console.log(apiUrl);
     axios.get(apiUrl).then(displayForecast);
 }
 
@@ -57,7 +55,6 @@ function displayTemperature(response){
     let dateElement=document.querySelector("#date");
     let iconElement=document.querySelector("#icon");
     let humidityElement=document.querySelector("#humidity");
-    console.log(response);
     fahrenheitTemperature=response.data.main.temp;
 
     humidityElement.innerHTML=Math.round(response.data.main.humidity); 
@@ -82,33 +79,7 @@ function search(event){
     lookUp(citySearchElement.value);
 }
 
-function showCelsiusTemperature(event){
-    event.preventDefault();
-    let temperatureElement=document.querySelector("#current-temperature");
-    let celsiusTemperature=((fahrenheitTemperature - 32) * 5/9 );
-    temperatureElement.innerHTML=Math.round(celsiusTemperature);
-    celsiusLink.classList.remove("active");
-    fahrenheitLink.classList.add("active");
-}
-
-function showFahrenheitTemperature(event){
-    event.preventDefault();
-    let temperatureElement=document.querySelector("#current-temperature");
-    temperatureElement.innerHTML=Math.round(fahrenheitTemperature);
-    celsiusLink.classList.add("active");
-    fahrenheitLink.classList.remove("active");
-}
-let fahrenheitTemperature=null;
-
 let form=document.querySelector("#search-form");
 form.addEventListener("submit", search);
-
-let celsiusLink=document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", showCelsiusTemperature);
-
-let fahrenheitLink=document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", showFahrenheitTemperature);
-
-
 
 lookUp("Madison");
