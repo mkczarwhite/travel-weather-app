@@ -2,10 +2,11 @@ body {
   font-family: "Noto Serif", serif;
 }
 .weather-app-wrapper {
+  background: #c3d6de;
   max-width: 600px;
   margin: 30px auto;
   padding: 20px;
-  border: 1px solid #875df7;
+  border: 3px solid #875df7;
   border-radius: 10px;
 }
 .coding-info {
